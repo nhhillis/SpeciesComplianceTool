@@ -30,6 +30,7 @@ from tkinter import filedialog as fd
 from xml.etree import ElementTree as ET
 from shapely.geometry import Polygon
 from pyproj import Transformer
+import pdfplumber
 
 ###ask to open kmz
 kmz_path = fd.askopenfilename(filetypes=[("KMZ files", "*.kmz")])
@@ -89,5 +90,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
     #convert to acres 
     acres = area_sq_meters/4047
     acres = round(acres,2)
-    
-   
+    print(acres)
+
+#defining the pdf file paths, user can select multiple pdfs but only the first one will be used for text extraction in this draft version
+pdf_paths = fd.askopenfilenames(filetypes=[("PDF files", "*.pdf")])
+
+#Need to 
+with pdfplumber.open(pdf_paths[0]) as pdf_pages:
+    text = ""
+    for page in pdf_pages.pages:
+        text += page.extract_text()
+    print(text)
