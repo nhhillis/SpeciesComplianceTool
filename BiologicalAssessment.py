@@ -23,6 +23,7 @@
 #         - Final language requires additional sources + client input
 #         - Tool should flag this clearly in output so user remembers to review
 
+import re
 import zipfile
 import tempfile
 import os
@@ -95,9 +96,24 @@ with tempfile.TemporaryDirectory() as tmpdir:
 #defining the pdf file paths, user can select multiple pdfs but only the first one will be used for text extraction in this draft version
 pdf_paths = fd.askopenfilenames(filetypes=[("PDF files", "*.pdf")])
 
-#Need to 
+#Extracting text from the selected PDF file using pdfplumber
 with pdfplumber.open(pdf_paths[0]) as pdf_pages:
     text = ""
     for page in pdf_pages.pages:
         text += page.extract_text()
     print(text)
+    if "Purpose & Need" in text:
+        print("Purpose & Need section found.")
+        match = re.search(r"Future ADT \(20 Year Projection\) \(Vehicles per day\) \d+", text)
+        if match:
+            result = text[:match.end()]
+        else:
+            print("Future ADT not found in text. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
+    else:
+        print("Purpose & Need section not found. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
+    
+
+    
+        
+
+
