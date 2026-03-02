@@ -33,6 +33,23 @@ from shapely.geometry import Polygon
 from pyproj import Transformer
 import pdfplumber
 
+def extract_section(text, start_anchor, stop_anchor, skip_to=":"):
+    if start_anchor in text:
+        print(f"{start_anchor} section found.")
+        start_match = re.search(rf"{start_anchor}", text)
+        content_start = text.find(skip_to, start_match.end())+1
+        stop_match = re.search(rf"{stop_anchor}", text)
+        if start_match and stop_match:
+            result = text[content_start:stop_match.start()]
+            result = result.strip()
+            print(result)
+            return result
+        else:
+            print(f"{start_anchor} not found in text. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
+    else:
+        print(f"{start_anchor} section not found. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
+
+
 ###ask to open kmz
 kmz_path = fd.askopenfilename(filetypes=[("KMZ files", "*.kmz")])
 
@@ -91,7 +108,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
     #convert to acres 
     acres = area_sq_meters/4047
     acres = round(acres,2)
-    print(acres)
 
 #defining the pdf file paths, user can select multiple pdfs but only the first one will be used for text extraction in this draft version
 pdf_paths = fd.askopenfilenames(filetypes=[("PDF files", "*.pdf")])
@@ -101,19 +117,8 @@ with pdfplumber.open(pdf_paths[0]) as pdf_pages:
     text = ""
     for page in pdf_pages.pages:
         text += page.extract_text()
-    print(text)
-    if "Purpose & Need" in text:
-        print("Purpose & Need section found.")
-        match = re.search(r"Future ADT \(20 Year Projection\) \(Vehicles per day\) \d+", text)
-        if match:
-            result = text[:match.end()]
-        else:
-            print("Future ADT not found in text. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
-    else:
-        print("Purpose & Need section not found. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
-    
-
-    
-        
 
 
+project_description = extract_section(text, "Project Description", "Facility Description", "\n")
+proposed_improvement = extract_section(text, "Proposed Improvement", "Project Description", ":")
+purpose_and_need = extract_section(text, "Purpose & Need", "Proposed Improvement", ":")
