@@ -117,8 +117,14 @@ with tempfile.TemporaryDirectory() as tmpdir:
             
             #gets species data from the response, which is nested under 'resources' and 'populationsBySid' Need wetlands/crithab/sci name
             species_data = ipac_data['resources']['populationsBySid']  
+            
+            #gets wetland data from the response, which is nested under 'resources' and 'wetlands' Need acres/name/boundaries
             wetland_data = ipac_data['resources']['wetlands'] 
             print('wetland data:', wetland_data)
+
+            #checking if IPAC is returning None, meaning it is unable to access NWI data
+            #Then checking if the 'items' key in the wetland data is empty, meaning there are no wetlands in the project area. 
+            # If there is wetland data, it prints the acres, name, and boundaries of the wetlands.
             if wetland_data is None:
                 print("IPAC unable to return wetland data.")
             elif not wetland_data['items']:
@@ -127,11 +133,15 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 print("Wetland Acres:", wetland_data['items']['acres'])
                 print("Wetland Name:", wetland_data['items']['name'])
                 print("Wetland boundaries:", wetland_data['items']['bounds'])
+
+            # Loop through the species data and print the optional common name, scientific name, listing status, and whether critical habitat is in the project footprint. This information is nested under 'population' for each species.
             for optionalCommonName, species_info in species_data.items():
                 print(f"Species: {species_info['population']['optionalCommonName']}")
                 print(f"Scientific Name: {species_info['population']['optionalScientificName']}")
                 print(f"Status: {species_info['population']['listingStatusName']}")
                 print(f"Critical Habitat: {species_info['crithabInFootprint']}")
+
+            #!!!Need to add migratory birds and another option for wetlands, as IPaC is not returning wetland data for some reason. Maybe add a check to see if IPaC is able to access NWI data, and if not, use an alternative source for wetland data.
 
         else:
             print(f"Failed to retrieve species list. Status code: {response.status_code}")
