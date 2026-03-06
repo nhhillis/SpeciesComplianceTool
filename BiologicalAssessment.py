@@ -29,9 +29,11 @@ import tempfile
 import os
 from tkinter import filedialog as fd
 from xml.etree import ElementTree as ET
+import shapely
 from shapely.geometry import Polygon
 from pyproj import Transformer
 import pdfplumber
+import requests
 
 # This function takes in the full text of a PDF, along with start and stop anchors to identify the section of interest. It also has an optional parameter to skip to a specific character (like ":") if needed. The function returns the extracted section of text, or prints a message if the section is not found.
 def extract_section(text, start_anchor, stop_anchor, skip_to=":"):
@@ -93,6 +95,48 @@ with tempfile.TemporaryDirectory() as tmpdir:
     
     #create a shapely polygon and pass the coordinates generated above
     project_polygon = Polygon(coords)
+    print('Project Polygon:', project_polygon)
+
+    #convert shapely polygon to geojson format,  to a GeoJSON object for IPaC .
+    geojason_polygon = shapely.to_geojson(project_polygon)
+
+    try:
+        #IPaC API endpoint for species list based on a polygon
+        ipac_url = "https://ipac.ecosphere.fws.gov/location/api/resources"
+
+        #IPaC API request with the GeoJSON polygon as the payload
+        response = requests.post(ipac_url, json={"location.footprint": geojason_polygon, "timeout": 30, "includeOtherFwsResources": True})
+
+        #Check if the request was successful
+        if response.status_code == 200:
+            ipac_data= response.json()
+            print(ipac_data['resources'].keys())
+            print(ipac_data['resources']['wetlandsQueried'])
+            print(ipac_data['resources']['wetlands'])
+            print("Successfully retrieved data from IPaC API.")
+            
+            #gets species data from the response, which is nested under 'resources' and 'populationsBySid' Need wetlands/crithab/sci name
+            species_data = ipac_data['resources']['populationsBySid']  
+            wetland_data = ipac_data['resources']['wetlands'] 
+            print('wetland data:', wetland_data)
+            if wetland_data is None:
+                print("IPAC unable to return wetland data.")
+            elif not wetland_data['items']:
+                print("No wetland data found for this location.")
+            else:
+                print("Wetland Acres:", wetland_data['items']['acres'])
+                print("Wetland Name:", wetland_data['items']['name'])
+                print("Wetland boundaries:", wetland_data['items']['bounds'])
+            for optionalCommonName, species_info in species_data.items():
+                print(f"Species: {species_info['population']['optionalCommonName']}")
+                print(f"Scientific Name: {species_info['population']['optionalScientificName']}")
+                print(f"Status: {species_info['population']['listingStatusName']}")
+                print(f"Critical Habitat: {species_info['crithabInFootprint']}")
+
+        else:
+            print(f"Failed to retrieve species list. Status code: {response.status_code}")
+    except Exception as e:
+        print(f"An error occurred while connecting to the IPaC API: {e}")
 
     #converts coordinates from wgs84(4326) to UTM zone 14n (32614), longitude is first lattitude is second
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:32614", always_xy=True)
@@ -123,3 +167,4 @@ with pdfplumber.open(pdf_paths[0]) as pdf_pages:
 project_description = extract_section(text, "Project Description", "Facility Description", "\n")
 proposed_improvement = extract_section(text, "Proposed Improvement", "Project Description", ":")
 purpose_and_need = extract_section(text, "Purpose & Need", "Proposed Improvement", ":")
+
