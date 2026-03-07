@@ -34,6 +34,7 @@ from shapely.geometry import Polygon
 from pyproj import Transformer
 import pdfplumber
 import requests
+import json
 
 # This function takes in the full text of a PDF, along with start and stop anchors to identify the section of interest. It also has an optional parameter to skip to a specific character (like ":") if needed. The function returns the extracted section of text, or prints a message if the section is not found.
 def extract_section(text, start_anchor, stop_anchor, skip_to=":"):
@@ -45,7 +46,7 @@ def extract_section(text, start_anchor, stop_anchor, skip_to=":"):
         if start_match and stop_match:
             result = text[content_start:stop_match.start()]
             result = result.strip()
-            print(result)
+            print(start_anchor, " - ", result)
             return result
         else:
             print(f"{start_anchor} not found in text. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
@@ -95,7 +96,6 @@ with tempfile.TemporaryDirectory() as tmpdir:
     
     #create a shapely polygon and pass the coordinates generated above
     project_polygon = Polygon(coords)
-    print('Project Polygon:', project_polygon)
 
     #convert shapely polygon to geojson format,  to a GeoJSON object for IPaC .
     geojason_polygon = shapely.to_geojson(project_polygon)
@@ -110,17 +110,18 @@ with tempfile.TemporaryDirectory() as tmpdir:
         #Check if the request was successful
         if response.status_code == 200:
             ipac_data= response.json()
-            print(ipac_data['resources'].keys())
-            print(ipac_data['resources']['wetlandsQueried'])
-            print(ipac_data['resources']['wetlands'])
+            #print(json.dumps(ipac_data, indent=2))  # Print the entire response for debugging
+            #print(ipac_data['resources'].keys())
+            #print(ipac_data['resources']['wetlandsQueried'])
+            #print(ipac_data['resources']['wetlands'])
             print("Successfully retrieved data from IPaC API.")
             
             #gets species data from the response, which is nested under 'resources' and 'populationsBySid' Need wetlands/crithab/sci name
             species_data = ipac_data['resources']['populationsBySid']  
-            
+            migbird_data = ipac_data['resources']['migbirds']
             #gets wetland data from the response, which is nested under 'resources' and 'wetlands' Need acres/name/boundaries
             wetland_data = ipac_data['resources']['wetlands'] 
-            print('wetland data:', wetland_data)
+            #print('wetland data:', wetland_data)
 
             #checking if IPAC is returning None, meaning it is unable to access NWI data
             #Then checking if the 'items' key in the wetland data is empty, meaning there are no wetlands in the project area. 
@@ -141,8 +142,11 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 print(f"Status: {species_info['population']['listingStatusName']}")
                 print(f"Critical Habitat: {species_info['crithabInFootprint']}")
 
-            #!!!Need to add migratory birds and another option for wetlands, as IPaC is not returning wetland data for some reason. Maybe add a check to see if IPaC is able to access NWI data, and if not, use an alternative source for wetland data.
-
+            # extract migratory bird data.
+            if not migbird_data:
+                print("No migratory bird data found for this location.")
+            else:
+                print("Migratory Bird Data:", migbird_data)
         else:
             print(f"Failed to retrieve species list. Status code: {response.status_code}")
     except Exception as e:
