@@ -35,6 +35,7 @@ from pyproj import Transformer
 import pdfplumber
 import requests
 import json
+from datetime import datetime 
 
 # This function takes in the full text of a PDF, along with start and stop anchors to identify the section of interest. It also has an optional parameter to skip to a specific character (like ":") if needed. The function returns the extracted section of text, or prints a message if the section is not found.
 def extract_section(text, start_anchor, stop_anchor, skip_to=":"):
@@ -46,7 +47,7 @@ def extract_section(text, start_anchor, stop_anchor, skip_to=":"):
         if start_match and stop_match:
             result = text[content_start:stop_match.start()]
             result = result.strip()
-            print(start_anchor, " - ", result)
+            #print(start_anchor, " - ", result)
             return result
         else:
             print(f"{start_anchor} not found in text. Open in Bluebeam and use OCR to extract text. Save, and re-run this tool to extract text from the OCR layer.")
@@ -116,13 +117,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
             #print(ipac_data['resources']['wetlands'])
             print("Successfully retrieved data from IPaC API.")
             
-            #gets species data from the response, which is nested under 'resources' and 'populationsBySid' Need wetlands/crithab/sci name
-            species_data = ipac_data['resources']['populationsBySid']  
-            migbird_data = ipac_data['resources']['migbirds']
             #gets wetland data from the response, which is nested under 'resources' and 'wetlands' Need acres/name/boundaries
             wetland_data = ipac_data['resources']['wetlands'] 
-            #print('wetland data:', wetland_data)
-
             #checking if IPAC is returning None, meaning it is unable to access NWI data
             #Then checking if the 'items' key in the wetland data is empty, meaning there are no wetlands in the project area. 
             # If there is wetland data, it prints the acres, name, and boundaries of the wetlands.
@@ -135,6 +131,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 print("Wetland Name:", wetland_data['items']['name'])
                 print("Wetland boundaries:", wetland_data['items']['bounds'])
 
+            #gets species data from the response, which is nested under 'resources' and 'populationsBySid' Need wetlands/crithab/sci name
+            species_data = ipac_data['resources']['populationsBySid']  
             # Loop through the species data and print the optional common name, scientific name, listing status, and whether critical habitat is in the project footprint. This information is nested under 'population' for each species.
             for optionalCommonName, species_info in species_data.items():
                 print(f"Species: {species_info['population']['optionalCommonName']}")
@@ -143,10 +141,29 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 print(f"Critical Habitat: {species_info['crithabInFootprint']}")
 
             # extract migratory bird data.
+            migbird_data = ipac_data['resources']['migbirds']
             if not migbird_data:
                 print("No migratory bird data found for this location.")
             else:
-                print("Migratory Bird Data:", migbird_data)
+                print("Migratory Bird Species in Project Area:")
+                for species in migbird_data:
+                    print(f"Common Name: {species['phenologySpecies']['commonName']}")
+                    #print(f"Level of Concern: {species['level']['name']}")
+                    level_name = {"BCC_RANGEWIDE_CON": "Bird of Conservation Concern (BCC) Range-wide Concern", 
+                                  "BCC_BCR_CON": "Bird of Conservation Concern (BCC) BCR Concern",
+                                  "NON_BCC_VULNERABLE": "Non-BCC Vulnerable",
+                                  "BCC_RANGEWIDE_PRV": "Bird of Conservation Concern (BCC) Range-wide Priority (Provisional)"}
+                    if species['level']['name'] not in level_name:
+                        print(f"Level of Concern: not given in IPaC response")
+                    else:
+                        print(f"Level of Concern: {level_name[species['level']['name']]}")
+                    if species['optionalBreedsFrom'] is None:
+                        print("Does not breed in project area.")
+                    else:
+                        startdate = datetime.strptime(species['optionalBreedsFrom'], "%Y-%m-%dT%H:%MZ").strftime("%B")
+                        enddate = datetime.strptime(species['optionalBreedsTo'], "%Y-%m-%dT%H:%MZ").strftime("%B")
+                        print(f"Breeds From: {startdate}")
+                        print(f"Breeds To: {enddate}")
         else:
             print(f"Failed to retrieve species list. Status code: {response.status_code}")
     except Exception as e:
