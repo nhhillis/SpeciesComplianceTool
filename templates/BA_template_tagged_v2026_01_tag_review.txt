@@ -1,0 +1,1019 @@
+ODOT BA TEMPLATE — SDT TAG REVIEW REPORT
+========================================================================
+Total SDTs:        336
+High confidence:   319
+Medium confidence: 1
+Existing tags:     16
+Needs review:      0  ← ACTION REQUIRED
+
+Verify all MEDIUM and NEEDS_REVIEW entries.
+------------------------------------------------------------------------
+
+SDT   1 | high     | cover__usfws_project_code
+           content: click here to enter text.
+
+SDT   2 | high     | cover__ipac_email
+           content: click here to enter text.
+
+SDT   3 | existing | Project Type
+           content: choose an item.
+
+SDT   4 | high     | sec1__chk_work_in_ohwm
+           content: ☐
+
+SDT   5 | high     | sec1__chk_offset_alignment
+           content: ☐
+
+SDT   6 | high     | sec1__chk_offset_alignment
+           content: ☐
+
+SDT   7 | high     | sec1__chk_no_offpavement
+           content: ☐
+
+SDT   8 | high     | sec1__chk_new_row
+           content: ☐
+
+SDT   9 | high     | sec2__whooping_crane__ipac
+           content: ☐
+
+SDT  10 | high     | sec2__whooping_crane__watershed
+           content: ☐
+
+SDT  11 | high     | sec2__whooping_crane__waterbody
+           content: ☐
+
+SDT  12 | high     | sec2__gray_bat__ipac
+           content: ☐
+
+SDT  13 | high     | sec2__gray_bat__watershed
+           content: ☐
+
+SDT  14 | high     | sec2__gray_bat__waterbody
+           content: ☐
+
+SDT  15 | high     | sec2__indiana_bat__ipac
+           content: ☐
+
+SDT  16 | high     | sec2__indiana_bat__watershed
+           content: ☐
+
+SDT  17 | high     | sec2__nleb__ipac
+           content: ☐
+
+SDT  18 | high     | sec2__nleb__watershed
+           content: ☐
+
+SDT  19 | high     | sec2__ozark_bigeared_bat__ipac
+           content: ☐
+
+SDT  20 | high     | sec2__ozark_bigeared_bat__watershed
+           content: ☐
+
+SDT  21 | high     | sec2__peppered_chub__ipac
+           content: ☐
+
+SDT  22 | high     | sec2__peppered_chub__watershed
+           content: ☐
+
+SDT  23 | high     | sec2__peppered_chub__waterbody
+           content: ☐
+
+SDT  24 | high     | sec2__neosho_mucket__ipac
+           content: ☐
+
+SDT  25 | high     | sec2__neosho_mucket__watershed
+           content: ☐
+
+SDT  26 | high     | sec2__neosho_mucket__waterbody
+           content: ☐
+
+SDT  27 | high     | sec2__neosho_mucket__records
+           content: ☐
+
+SDT  28 | high     | sec2__ouachita_rpb__ipac
+           content: ☐
+
+SDT  29 | high     | sec2__ouachita_rpb__watershed
+           content: ☐
+
+SDT  30 | high     | sec2__ouachita_rpb__waterbody
+           content: ☐
+
+SDT  31 | high     | sec2__ouachita_rpb__records
+           content: ☐
+
+SDT  32 | high     | sec2__scaleshell_mussel__ipac
+           content: ☐
+
+SDT  33 | high     | sec2__scaleshell_mussel__watershed
+           content: ☐
+
+SDT  34 | high     | sec2__scaleshell_mussel__waterbody
+           content: ☐
+
+SDT  35 | high     | sec2__scaleshell_mussel__records
+           content: ☐
+
+SDT  36 | high     | sec2__winged_mapleleaf__ipac
+           content: ☐
+
+SDT  37 | high     | sec2__winged_mapleleaf__watershed
+           content: ☐
+
+SDT  38 | high     | sec2__winged_mapleleaf__waterbody
+           content: ☐
+
+SDT  39 | high     | sec2__winged_mapleleaf__records
+           content: ☐
+
+SDT  40 | high     | sec2__benton_crayfish__ipac
+           content: ☐
+
+SDT  41 | high     | sec2__benton_crayfish__watershed
+           content: ☐
+
+SDT  42 | high     | sec2__benton_crayfish__waterbody
+           content: ☐
+
+SDT  43 | high     | sec2__benton_crayfish__records
+           content: ☐
+
+SDT  44 | high     | sec2__harperella__ipac
+           content: ☐
+
+SDT  45 | high     | sec2__harperella__watershed
+           content: ☐
+
+SDT  46 | high     | sec2__abb__ipac
+           content: ☐
+
+SDT  47 | high     | sec2__abb__watershed
+           content: ☐
+
+SDT  48 | high     | sec2__eastern_black_rail__ipac
+           content: ☐
+
+SDT  49 | high     | sec2__eastern_black_rail__watershed
+           content: ☐
+
+SDT  50 | high     | sec2__lepc__ipac
+           content: ☐
+
+SDT  51 | high     | sec2__lepc__watershed
+           content: ☐
+
+SDT  52 | high     | sec2__piping_plover__ipac
+           content: ☐
+
+SDT  53 | high     | sec2__piping_plover__watershed
+           content: ☐
+
+SDT  54 | high     | sec2__red_knot__ipac
+           content: ☐
+
+SDT  55 | high     | sec2__red_knot__watershed
+           content: ☐
+
+SDT  56 | high     | sec2__rcwo__ipac
+           content: ☐
+
+SDT  57 | high     | sec2__rcwo__watershed
+           content: ☐
+
+SDT  58 | high     | sec2__ark_river_shiner__ipac
+           content: ☐
+
+SDT  59 | high     | sec2__ark_river_shiner__watershed
+           content: ☐
+
+SDT  60 | high     | sec2__ark_river_shiner__waterbody
+           content: ☐
+
+SDT  61 | high     | sec2__ark_river_shiner__records
+           content: ☐
+
+SDT  62 | high     | sec2__leopard_darter__ipac
+           content: ☐
+
+SDT  63 | high     | sec2__leopard_darter__watershed
+           content: ☐
+
+SDT  64 | high     | sec2__leopard_darter__waterbody
+           content: ☐
+
+SDT  65 | high     | sec2__leopard_darter__records
+           content: ☐
+
+SDT  66 | high     | sec2__neosho_madtom__ipac
+           content: ☐
+
+SDT  67 | high     | sec2__neosho_madtom__watershed
+           content: ☐
+
+SDT  68 | high     | sec2__neosho_madtom__waterbody
+           content: ☐
+
+SDT  69 | high     | sec2__neosho_madtom__records
+           content: ☐
+
+SDT  70 | high     | sec2__ozark_cavefish__ipac
+           content: ☐
+
+SDT  71 | high     | sec2__ozark_cavefish__watershed
+           content: ☐
+
+SDT  72 | high     | sec2__ozark_cavefish__waterbody
+           content: ☐
+
+SDT  73 | high     | sec2__rabbitsfoot__ipac
+           content: ☐
+
+SDT  74 | high     | sec2__rabbitsfoot__watershed
+           content: ☐
+
+SDT  75 | high     | sec2__rabbitsfoot__waterbody
+           content: ☐
+
+SDT  76 | high     | sec2__rabbitsfoot__records
+           content: ☐
+
+SDT  77 | high     | sec2__western_fanshell__ipac
+           content: ☐
+
+SDT  78 | high     | sec2__western_fanshell__watershed
+           content: ☐
+
+SDT  79 | high     | sec2__western_fanshell__waterbody
+           content: ☐
+
+SDT  80 | high     | sec2__western_fanshell__records
+           content: ☐
+
+SDT  81 | high     | sec2__meads_milkweed__ipac
+           content: ☐
+
+SDT  82 | high     | sec2__meads_milkweed__watershed
+           content: ☐
+
+SDT  83 | high     | sec2__mo_bladderpod__ipac
+           content: ☐
+
+SDT  84 | high     | sec2__mo_bladderpod__watershed
+           content: ☐
+
+SDT  85 | high     | sec2__am_alligator__ipac
+           content: ☐
+
+SDT  86 | high     | sec2__am_alligator__watershed
+           content: ☐
+
+SDT  87 | high     | sec2__tx_kangaroo_rat__ipac
+           content: ☐
+
+SDT  88 | high     | sec2__tx_kangaroo_rat__watershed
+           content: ☐
+
+SDT  89 | high     | sec2__tricolored_bat__ipac
+           content: ☐
+
+SDT  90 | high     | sec2__tricolored_bat__watershed
+           content: ☐
+
+SDT  91 | high     | sec2__alligator_snapping__ipac
+           content: ☐
+
+SDT  92 | high     | sec2__alligator_snapping__watershed
+           content: ☐
+
+SDT  93 | high     | sec2__monarch__ipac
+           content: ☐
+
+SDT  94 | high     | sec2__monarch__watershed
+           content: ☐
+
+SDT  95 | high     | sec2__western_regal_frit__ipac
+           content: ☐
+
+SDT  96 | high     | sec2__western_regal_frit__watershed
+           content: ☐
+
+SDT  97 | high     | sec2__crithab__whooping_crane
+           content: ☐
+
+SDT  98 | high     | sec2__crithab__peppered_chub
+           content: ☐
+
+SDT  99 | high     | sec2__crithab__ark_river_shiner
+           content: ☐
+
+SDT 100 | high     | sec2__crithab__leopard_darter
+           content: ☐
+
+SDT 101 | high     | sec2__crithab__neosho_mucket
+           content: ☐
+
+SDT 102 | high     | sec2__crithab__rabbitsfoot
+           content: ☐
+
+SDT 103 | high     | sec2__crithab__louisiana_pigtoe
+           content: ☐
+
+SDT 104 | high     | sec3_1__soil_class
+           content: click here to enter text.
+
+SDT 105 | high     | sec3_1__soil_name
+           content: click here to enter text.
+
+SDT 106 | high     | sec3_1__soil_type
+           content: click here to enter text.
+
+SDT 107 | high     | sec3_1__soil_characteristics
+           content: click here to enter text.
+
+SDT 108 | high     | sec3_1__precip_annual_inches
+           content: click here to enter text.
+
+SDT 109 | high     | sec3_1__growing_season_days
+           content: click here to enter text.
+
+SDT 110 | high     | sec3_1__temp_summer
+           content: click here to enter text.
+
+SDT 111 | high     | sec3_1__temp_winter
+           content: click here to enter text.
+
+SDT 112 | high     | sec3_1__land_use_woods
+           content: click here to enter text.
+
+SDT 113 | high     | sec3_1__land_use_field
+           content: click here to enter text.
+
+SDT 114 | high     | sec3_2__chk_pedestrian_survey
+           content: ☐
+
+SDT 115 | high     | sec3_2__chk_karst_buffer
+           content: ☐
+
+SDT 116 | high     | sec3_2__karst_reason
+           content: enter reason, only if project is within a karst area .
+
+SDT 117 | high     | sec3_2__wc__sandbars
+           content: ☐
+
+SDT 118 | high     | sec3_2__wc__emergent_acres
+           content: enter acres .
+
+SDT 119 | high     | sec3_2__wc__croplands_95pct
+           content: ☐
+
+SDT 120 | existing | Whooping Crane Corridor
+           content: %
+
+SDT 121 | high     | sec3_2__wc__salt_plains_15mi
+           content: ☐
+
+SDT 122 | high     | sec3_2__wc__hackberry_foss
+           content: ☐
+
+SDT 123 | high     | sec3_2__gray_bat__karst
+           content: ☐
+
+SDT 124 | high     | sec3_2__gray_bat__riparian
+           content: ☐
+
+SDT 125 | high     | sec3_2__gray_bat__ozark_plateau
+           content: ☐
+
+SDT 126 | high     | sec3_2__gray_bat__cave_10mi
+           content: ☐
+
+SDT 127 | high     | sec3_2__gray_bat__cave_2mi
+           content: ☐
+
+SDT 128 | high     | sec3_2__gray_bat__stream_ft
+           content: enter ft
+
+SDT 129 | high     | sec2__indiana_bat__ipac
+           content: ☐
+
+SDT 130 | high     | sec3_2__indiana_bat__trees_5in
+           content: ☐
+
+SDT 131 | high     | sec3_2__indiana_bat__10trees
+           content: ☐
+
+SDT 132 | high     | sec3_2__indiana_bat__riparian_1mi
+           content: ☐
+
+SDT 133 | high     | sec3_2__indiana_bat__corridors
+           content: ☐
+
+SDT 134 | high     | sec3_2__indiana_bat__forested_acres
+           content: enter acres.
+
+SDT 135 | high     | sec2__nleb__ipac
+           content: ☐
+
+SDT 136 | high     | sec3_2__nleb__trees_3in
+           content: ☐
+
+SDT 137 | high     | sec3_2__nleb__10trees
+           content: ☐
+
+SDT 138 | high     | sec3_2__nleb__barns_sheds
+           content: ☐
+
+SDT 139 | high     | sec3_2__nleb__corridors
+           content: ☐
+
+SDT 140 | high     | sec3_2__nleb__forested_acres
+           content: enter acres.
+
+SDT 141 | high     | sec3_2__bat_tree__acres_0_100ft
+           content: enter acres.
+
+SDT 142 | high     | sec3_2__bat_tree__acres_100_300ft
+           content: enter acres.
+
+SDT 143 | high     | sec3_2__bat_tree__acres_gt300ft
+           content: enter acres.
+
+SDT 144 | high     | sec2__ozark_bigeared_bat__ipac
+           content: ☐
+
+SDT 145 | high     | sec3_2__ozark_bat__oak_hickory
+           content: ☐
+
+SDT 146 | high     | sec3_2__ozark_bat__riparian_interm
+           content: ☐
+
+SDT 147 | high     | sec2__crithab__peppered_chub
+           content: ☐
+
+SDT 148 | high     | sec2__crithab__neosho_mucket
+           content: ☐
+
+SDT 149 | high     | sec2__ouachita_rpb__ipac
+           content: ☐
+
+SDT 150 | high     | sec3_2__ouachita_rpb__mussel_beds
+           content: ☐
+
+SDT 151 | high     | sec2__scaleshell_mussel__ipac
+           content: ☐
+
+SDT 152 | high     | sec2__winged_mapleleaf__ipac
+           content: ☐
+
+SDT 153 | high     | sec2__harperella__ipac
+           content: ☐
+
+SDT 154 | high     | sec3_2__abb__native_veg_acres
+           content: enter acres.
+
+SDT 155 | high     | sec3_2__abb__adjacent
+           content: ☐
+
+SDT 156 | high     | sec3_2__abb__conservation_lands
+           content: ☐
+
+SDT 157 | high     | sec2__lepc__ipac
+           content: ☐
+
+SDT 158 | high     | sec3_2__lepc__sgpchat3
+           content: ☐
+
+SDT 159 | high     | sec3_2__lepc__sgpchat2
+           content: ☐
+
+SDT 160 | high     | sec3_2__lepc__sgpchat1
+           content: ☐
+
+SDT 161 | high     | sec3_2__lepc__lek_3mi
+           content: ☐
+
+SDT 162 | high     | sec2__piping_plover__ipac
+           content: ☐
+
+SDT 163 | high     | sec3_2__piping_plover__saltflats
+           content: ☐
+
+SDT 164 | high     | sec2__red_knot__ipac
+           content: ☐
+
+SDT 165 | high     | sec2__rcwo__ipac
+           content: ☐
+
+SDT 166 | high     | sec3_2__rcwo__park_pine
+           content: ☐
+
+SDT 167 | high     | sec3_2__rcwo__pine_60yr
+           content: ☐
+
+SDT 168 | high     | sec3_2__rcwo__mccurtain
+           content: ☐
+
+SDT 169 | high     | sec2__crithab__ark_river_shiner
+           content: ☐
+
+SDT 170 | high     | sec3_2__leopard_darter__habitat
+           content: ☐
+
+SDT 171 | high     | sec3_2__neosho_madtom__habitat
+           content: ☐
+
+SDT 172 | high     | sec3_2__ozark_cavefish__habitat
+           content: ☐
+
+SDT 173 | high     | sec3_2__am_alligator__habitat
+           content: ☐
+
+SDT 174 | high     | sec3_2__am_alligator__little_river
+           content: ☐
+
+SDT 175 | high     | sec3_2__rabbitsfoot__habitat
+           content: ☐
+
+SDT 176 | high     | sec3_2__tcb__karst
+           content: ☐
+
+SDT 177 | high     | sec3_2__tcb__trees_4in
+           content: ☐
+
+SDT 178 | high     | sec3_2__tcb__barns_sheds
+           content: ☐
+
+SDT 179 | high     | sec3_2__tcb__corridors
+           content: ☐
+
+SDT 180 | high     | sec3_2__tcb__forested_acres
+           content: enter acres.
+
+SDT 181 | high     | sec3_2__bat_tree__acres_0_100ft
+           content: enter acres.
+
+SDT 182 | high     | sec3_2__bat_tree__acres_100_300ft
+           content: enter acres.
+
+SDT 183 | high     | sec3_2__bat_tree__acres_gt300ft
+           content: enter acres.
+
+SDT 184 | high     | sec3_2__ast__deep_water
+           content: ☐
+
+SDT 185 | high     | sec3_2__ast__submerged
+           content: ☐
+
+SDT 186 | high     | sec3_2__ast__forested_riparian
+           content: ☐
+
+SDT 187 | high     | sec3_2__ast__little_river
+           content: ☐
+
+SDT 188 | high     | sec3_2__monarch__milkweed
+           content: ☐
+
+SDT 189 | high     | sec3_2__monarch__nectar
+           content: ☐
+
+SDT 190 | high     | sec3_2__monarch__native_habitat
+           content: ☐
+
+SDT 191 | high     | sec3_2__wrf__violet
+           content: ☐
+
+SDT 192 | high     | sec3_2__wrf__native_grassland
+           content: ☐
+
+SDT 193 | high     | sec3_2__wrf__nectar
+           content: ☐
+
+SDT 194 | existing | Choose one of the following:
+           content: choose an item.
+
+SDT 195 | high     | sec3_4__str1__bat_present_chk
+           content: ☐
+
+SDT 196 | high     | sec3_4__str1__label
+           content: e nter as bridge #1, bridge #2, culvert #1, structure #1, etc and label the usfw
+
+SDT 197 | existing | Bridge, Culvert or Structure Type
+           content: choose an item.
+
+SDT 198 | high     | sec3_4__str1__multispan_chk
+           content: ☐
+
+SDT 199 | existing | Material (Beam, tubstructrue, Deck)
+           content: choose an item
+
+SDT 200 | existing | Bridge, Culvert or Structure Type
+           content: choose an item.
+
+SDT 201 | high     | sec3_4__str1__multispan_chk
+           content: ☐
+
+SDT 202 | existing | Material (Beam, tubstructrue, Deck)
+           content: choose an item
+
+SDT 203 | existing | Bridge, Culvert or Structure Type
+           content: choose an item.
+
+SDT 204 | existing | Material (Beam, tubstructrue, Deck)
+           content: choose an item
+
+SDT 205 | high     | sec3_4__str1__inspect_visual
+           content: ☐
+
+SDT 206 | high     | sec3_4__str1__inspect_ladder
+           content: ☐
+
+SDT 207 | high     | sec3_4__str1__inspect_snooper
+           content: ☐
+
+SDT 208 | high     | sec3_4__str1__inspect_thermal
+           content: ☐
+
+SDT 209 | high     | sec3_4__str1__inspect_acoustic
+           content: ☐
+
+SDT 210 | high     | sec3_4__str1__inspect_emergence
+           content: ☐
+
+SDT 211 | high     | sec3_4__str1__bats_observed
+           content: ☐
+
+SDT 212 | high     | sec3_4__str1__bat_signs
+           content: ☐
+
+SDT 213 | high     | sec3_4__str1__not_fully_inspected
+           content: ☐
+
+SDT 214 | high     | sec3_4__str2__label
+           content: enter as bridge #1, bridge #2, culvert #1, structure #1, etc and label the usfws
+
+SDT 215 | existing | Bridge, Culvert or Structure Type
+           content: choose an item.
+
+SDT 216 | high     | sec3_4__str2__multispan_chk
+           content: ☐
+
+SDT 217 | existing | Material (Beam, tubstructrue, Deck)
+           content: choose an item
+
+SDT 218 | existing | Bridge, Culvert or Structure Type
+           content: choose an item.
+
+SDT 219 | high     | sec3_4__str2__multispan_chk
+           content: ☐
+
+SDT 220 | existing | Material (Beam, tubstructrue, Deck)
+           content: choose an item
+
+SDT 221 | existing | Bridge, Culvert or Structure Type
+           content: choose an item.
+
+SDT 222 | existing | Material (Beam, tubstructrue, Deck)
+           content: choose an item
+
+SDT 223 | high     | sec3_4__str2__inspect_visual
+           content: ☐
+
+SDT 224 | high     | sec3_4__str2__inspect_ladder
+           content: ☐
+
+SDT 225 | high     | sec3_4__str2__inspect_snooper
+           content: ☐
+
+SDT 226 | high     | sec3_4__str2__inspect_thermal
+           content: ☐
+
+SDT 227 | high     | sec3_4__str2__inspect_acoustic
+           content: ☐
+
+SDT 228 | high     | sec3_4__str2__inspect_emergence
+           content: ☐
+
+SDT 229 | high     | sec3_4__str2__bats_observed
+           content: ☐
+
+SDT 230 | high     | sec3_4__str2__bat_signs
+           content: ☐
+
+SDT 231 | high     | sec3_4__str2__not_fully_inspected
+           content: ☐
+
+SDT 232 | medium   | sec3_4__bat_present_chk  * verify
+           content: ☐
+
+SDT 233 | high     | sec4__header__col1
+           content: ☐
+
+SDT 234 | high     | sec4__header__col2
+           content: ☐
+
+SDT 235 | high     | sec4__header__col3
+           content: ☐
+
+SDT 236 | high     | sec4__header__col4
+           content: ☐
+
+SDT 237 | high     | sec4__usfws_project_code
+           content: click or tap here to enter text.
+
+SDT 238 | high     | sec4__odot_jp_number
+           content: click or tap here to enter text.
+
+SDT 239 | high     | sec4__generic1__habitat_present
+           content: click here to enter species or critical habitat .
+
+SDT 240 | high     | sec4__generic1__activities_impact
+           content: ☐
+
+SDT 241 | high     | sec4__generic1__no_effect
+           content: ☐
+
+SDT 242 | high     | sec4__generic1__may_affect_dkey
+           content: ☐
+
+SDT 243 | high     | sec4__generic1__nlaa
+           content: ☐
+
+SDT 244 | high     | sec4__generic1__laa
+           content: ☐
+
+SDT 245 | high     | sec4__generic1__not_likely_jeopardize
+           content: ☐
+
+SDT 246 | high     | sec4__generic1__likely_jeopardize
+           content: ☐
+
+SDT 247 | high     | sec4__generic1__field_studies
+           content: ☐
+
+SDT 248 | high     | sec4__generic1__onhi_data
+           content: ☐
+
+SDT 249 | high     | sec4__generic2__habitat_present
+           content: click here to enter species or critical habitat .
+
+SDT 250 | high     | sec4__generic2__activities_impact
+           content: ☐
+
+SDT 251 | high     | sec4__generic2__no_effect
+           content: ☐
+
+SDT 252 | high     | sec4__generic2__may_affect_dkey
+           content: ☐
+
+SDT 253 | high     | sec4__generic2__nlaa
+           content: ☐
+
+SDT 254 | high     | sec4__generic2__laa
+           content: ☐
+
+SDT 255 | high     | sec4__generic2__not_likely_jeopardize
+           content: ☐
+
+SDT 256 | high     | sec4__generic2__likely_jeopardize
+           content: ☐
+
+SDT 257 | high     | sec4__generic2__field_studies
+           content: ☐
+
+SDT 258 | high     | sec4__generic2__onhi_data
+           content: ☐
+
+SDT 259 | high     | sec4__generic3__habitat_present
+           content: click here to enter species or critical habitat .
+
+SDT 260 | high     | sec4__generic3__activities_impact
+           content: ☐
+
+SDT 261 | high     | sec4__generic3__no_effect
+           content: ☐
+
+SDT 262 | high     | sec4__generic3__may_affect_dkey
+           content: ☐
+
+SDT 263 | high     | sec4__generic3__nlaa
+           content: ☐
+
+SDT 264 | high     | sec4__generic3__laa
+           content: ☐
+
+SDT 265 | high     | sec4__generic3__not_likely_jeopardize
+           content: ☐
+
+SDT 266 | high     | sec4__generic3__likely_jeopardize
+           content: ☐
+
+SDT 267 | high     | sec4__generic3__field_studies
+           content: ☐
+
+SDT 268 | high     | sec4__generic3__onhi_data
+           content: ☐
+
+SDT 269 | high     | sec4__abb__habitat_present
+           content: american burying beetle
+
+SDT 270 | high     | sec4__abb__activities_impact
+           content: ☐
+
+SDT 271 | high     | sec4__abb__no_effect
+           content: ☐
+
+SDT 272 | high     | sec4__abb__may_affect_dkey
+           content: ☐
+
+SDT 273 | high     | sec4__abb__nlaa
+           content: ☐
+
+SDT 274 | high     | sec4__abb__laa
+           content: ☐
+
+SDT 275 | high     | sec4__abb__not_likely_jeopardize
+           content: ☐
+
+SDT 276 | high     | sec4__abb__likely_jeopardize
+           content: ☐
+
+SDT 277 | high     | sec4__abb__field_studies
+           content: ☐
+
+SDT 278 | high     | sec4__tricolored_bat__habitat_present
+           content: tricolored bat
+
+SDT 279 | high     | sec4__tricolored_bat__activities_impact
+           content: ☐
+
+SDT 280 | high     | sec4__tricolored_bat__no_effect
+           content: ☐
+
+SDT 281 | high     | sec4__tricolored_bat__may_affect_dkey
+           content: ☐
+
+SDT 282 | high     | sec4__tricolored_bat__nlaa
+           content: ☐
+
+SDT 283 | high     | sec4__tricolored_bat__laa
+           content: ☐
+
+SDT 284 | high     | sec4__tricolored_bat__not_likely_jeopardize
+           content: ☐
+
+SDT 285 | high     | sec4__tricolored_bat__likely_jeopardize
+           content: ☐
+
+SDT 286 | high     | sec4__tricolored_bat__field_studies
+           content: ☐
+
+SDT 287 | high     | sec4__tricolored_bat__onhi_data
+           content: ☐
+
+SDT 288 | high     | sec4__ast__habitat_present
+           content: alligator snapping turtle
+
+SDT 289 | high     | sec4__ast__activities_impact
+           content: ☐
+
+SDT 290 | high     | sec4__ast__no_effect
+           content: ☐
+
+SDT 291 | high     | sec4__ast__may_affect_dkey
+           content: ☐
+
+SDT 292 | high     | sec4__ast__nlaa
+           content: ☐
+
+SDT 293 | high     | sec4__ast__laa
+           content: ☐
+
+SDT 294 | high     | sec4__ast__not_likely_jeopardize
+           content: ☐
+
+SDT 295 | high     | sec4__ast__likely_jeopardize
+           content: ☐
+
+SDT 296 | high     | sec4__ast__field_studies
+           content: ☐
+
+SDT 297 | high     | sec4__ast__onhi_data
+           content: ☐
+
+SDT 298 | high     | sec4__monarch__habitat_present
+           content: monarch butterfly
+
+SDT 299 | high     | sec4__monarch__activities_impact
+           content: ☐
+
+SDT 300 | high     | sec4__monarch__no_effect
+           content: ☐
+
+SDT 301 | high     | sec4__monarch__may_affect_dkey
+           content: ☐
+
+SDT 302 | high     | sec4__monarch__nlaa
+           content: ☐
+
+SDT 303 | high     | sec4__monarch__laa
+           content: ☐
+
+SDT 304 | high     | sec4__monarch__not_likely_jeopardize
+           content: ☐
+
+SDT 305 | high     | sec4__monarch__likely_jeopardize
+           content: ☐
+
+SDT 306 | high     | sec4__monarch__field_studies
+           content: ☐
+
+SDT 307 | high     | sec4__monarch__onhi_data
+           content: ☐
+
+SDT 308 | high     | sec4__wrf__habitat_present
+           content: western regal fritillary
+
+SDT 309 | high     | sec4__wrf__activities_impact
+           content: ☐
+
+SDT 310 | high     | sec4__wrf__no_effect
+           content: ☐
+
+SDT 311 | high     | sec4__wrf__may_affect_dkey
+           content: ☐
+
+SDT 312 | high     | sec4__wrf__nlaa
+           content: ☐
+
+SDT 313 | high     | sec4__wrf__laa
+           content: ☐
+
+SDT 314 | high     | sec4__wrf__not_likely_jeopardize
+           content: ☐
+
+SDT 315 | high     | sec4__wrf__likely_jeopardize
+           content: ☐
+
+SDT 316 | high     | sec4__wrf__field_studies
+           content: ☐
+
+SDT 317 | high     | sec4__wrf__onhi_data
+           content: ☐
+
+SDT 318 | high     | sec4__chk_abb_dkey
+           content: ☐
+
+SDT 319 | high     | sec4__chk_bat_dkey
+           content: ☐
+
+SDT 320 | high     | sec4__chk_bat_programmatic
+           content: ☐
+
+SDT 321 | high     | sec5__eagle__large_trees_fp
+           content: ☐
+
+SDT 322 | high     | sec5__eagle__large_trees_660ft
+           content: ☐
+
+SDT 323 | high     | sec5__eagle__open_foraging_fp
+           content: ☐
+
+SDT 324 | high     | sec5__eagle__open_foraging_660ft
+           content: ☐
+
+SDT 325 | high     | sec5__eagle__dist_lake
+           content: mi or ft
+
+SDT 326 | high     | sec5__eagle__dist_river
+           content: mi or ft
+
+SDT 327 | high     | sec5__eagle__dist_stream
+           content: mi or ft
+
+SDT 328 | high     | sec5__eagle__dist_pond
+           content: mi or ft
+
+SDT 329 | high     | sec5__eagle__nests_fp
+           content: ☐
+
+SDT 330 | high     | sec5__eagle__nests_660ft
+           content: ☐
+
+SDT 331 | high     | sec5__eagle__observed_fp
+           content: ☐
+
+SDT 332 | high     | sec5__eagle__observed_660ft
+           content: ☐
+
+SDT 333 | high     | sec6__chk_no_work_structures
+           content: ☐
+
+SDT 334 | existing | Nesting habitat for Birds of Conservation Concern:
+           content: choose an item.
+
+SDT 335 | high     | sec6__ilt__sandbars
+           content: ☐
+
+SDT 336 | high     | sec6__ilt__habitat_narrative
+           content: if habitat identified above, provide overview of nesting habitat within 0.25 mil
+

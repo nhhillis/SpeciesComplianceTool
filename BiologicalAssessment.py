@@ -148,7 +148,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 print("Migratory Bird Species in Project Area:")
                 for species in migbird_data:
                     print(f"Common Name: {species['phenologySpecies']['commonName']}")
-                    #print(f"Level of Concern: {species['level']['name']}")
+                    #dict containing meanings of the different levels of concern for migratory birds, which are returned in the IPaC response as codes. The code is used to look up the corresponding level of concern and print it in a more understandable format.
                     level_name = {"BCC_RANGEWIDE_CON": "Bird of Conservation Concern (BCC) Range-wide Concern", 
                                   "BCC_BCR_CON": "Bird of Conservation Concern (BCC) BCR Concern",
                                   "NON_BCC_VULNERABLE": "Non-BCC Vulnerable",

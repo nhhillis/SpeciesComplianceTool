@@ -1,6 +1,22 @@
+# Python
 __pycache__/
 *.pyc
 *.pyo
+
+# Environment
 .env
 venv/
+
+# Editor
 .vscode/
+
+# Input files (project-specific, stay local)
+*.kmz
+*.pdf
+
+# Tool outputs (generated files, never commit)
+outputs/
+
+# Project save files
+*_project.json
+*_BA_draft.docx
