@@ -1,3 +1,35 @@
+## 2026-03-26
+
+### Completed
+- Built models.py — core data model for the tool
+  - FieldSource enum (AUTO, FIELD, AUTHOR)
+  - BAField dataclass (tag, value, source, issues)
+  - StepResult dataclass (fields dict, issues list, status string)
+- Built project_io.py — project file save/load system
+  - bafield_to_dict() / dict_to_bafield() — BAField serialization round-trip
+  - stepresult_to_dict() / dict_to_stepresult() — StepResult serialization round-trip
+  - save_project() / load_project() — JSON file I/O
+
+### Decisions Made
+- Dedicated models.py for data model — keeps shape definitions separate from processing logic
+- Dedicated project_io.py for file I/O — clean separation of responsibilities
+- FieldSource enum values stored as lowercase strings in JSON (e.g. "auto") for human readability
+- .get() with safe defaults used on all deserializer fields to handle missing keys gracefully
+- import json and from models import BAField, StepResult, FieldSource at top of project_io.py
+
+### Current State of Code
+- models.py — complete
+- project_io.py — complete
+- Modules 1 and 2 (BiologicalAssessment.py) — complete, not yet refactored to use BAField
+
+### Next Session Goal
+- Stage 3: Refactor BiologicalAssessment.py so Modules 1 and 2 populate BAField objects
+  instead of returning raw data
+
+### Open Questions
+- FieldSource enum values are lowercase — confirm this is consistent with how they'll
+  appear in output documents and audit report
+
 ## 2026-03-17
 ### Completed
 
