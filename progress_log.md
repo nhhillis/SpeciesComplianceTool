@@ -1,3 +1,43 @@
+## 2026-03-27
+Completed
+
+Added ProjectMetadata dataclass to models.py (jp_number, county, preparer)
+Added add_issue() method to StepResult in models.py — sets status to "error" and appends issue message in one call
+Created pipeline_functions.py with completed ingest_kmz(file_path) function
+
+Checks for missing/empty KMZ file
+Checks for zero or multiple KML files inside the KMZ
+Parses KML coordinates into a Shapely polygon
+Checks for invalid geometry
+Reprojects to UTM Zone 14N and calculates acres
+Returns StepResult with project_polygon, geojson_polygon, and acres as BAField objects (source: AUTO)
+
+
+
+Decisions Made
+
+County and JP number will be entered manually by the biologist at project setup — removed fragile filename parsing
+ProjectMetadata holds project-setup fields (jp_number, county, preparer); dates are deferred to pipeline fields
+ingest_kmz is a separate StepResult from query_ipac — better issue granularity for audit report
+pipeline_functions.py is a new file; BiologicalAssessment.py will become the orchestrator
+
+Current State of Code
+
+models.py — complete (BAField, StepResult, FieldSource, ProjectMetadata)
+project_io.py — complete (save/load, serialization round-trips)
+pipeline_functions.py — ingest_kmz complete; query_ipac and extract_pdf not yet started
+BiologicalAssessment.py — not yet refactored to orchestrator pattern
+
+Next Session Goal
+
+Implement query_ipac(polygon) in pipeline_functions.py
+Include NWI REST API as IPaC wetland fallback within query_ipac
+
+Open Questions
+
+Ecoregion, soils, and watershed data sources not yet spiked — same five-step spike process needed before building
+ProjectMetadata not yet wired into project_io.py serialization — needs metadata_to_dict / dict_to_metadata functions
+FieldSource enum values are lowercase in JSON — confirm consistent with audit report rendering
 ## 2026-03-26
 
 ### Completed
@@ -28,7 +68,7 @@
 
 ### Open Questions
 - FieldSource enum values are lowercase — confirm this is consistent with how they'll
-  appear in output documents and audit report
+  appear in output documents and audit report  
 
 ## 2026-03-17
 ### Completed
@@ -62,7 +102,7 @@ Build BAField / FieldSource dataclasses
 Design step result object with data + issues list
 Begin wiring existing Module 1 and 2 outputs into new data model
 
-## Open Questions
+### Open Questions
 
 Ecoregion / soils / watershed data sources not yet spiked — same evaluation process needed before building
 
@@ -134,10 +174,9 @@ ________________________________________________________________________________
 
 ### Open Questions
 - Confirm exact API key string for BCC_RANGEWIDE_CON vs BCC_RANGEWIDE_CONCERN
-# Progress Log
 
 
-2026-03-06
+## 2026-03-06
 Completed this session:
 
 Built IPaC API query using requests.post to /location/api/resources
@@ -162,7 +201,7 @@ Test wetlands parsing when NWI data is available
 Add migratory birds parsing
 Begin thinking about structured output format for downstream document generation
 ---
-2026-03-02
+## 2026-03-02
 Completed
 
 Built reusable extract_section(text, start_anchor, stop_anchor, skip_to) function

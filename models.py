@@ -30,3 +30,13 @@ class StepResult:
     issues: List[str] = field(default_factory=list)
     status: str = "success" 
 
+#Define the ProjectMetadata dataclass with the specified fields
+@dataclass
+class ProjectMetadata:
+    jp_number: str
+    county: str
+    preparer: str = ""
+   
+def add_issue(self, issue: str):
+    self.issues.append(issue)
+    self.status = "error"
