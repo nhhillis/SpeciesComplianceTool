@@ -116,7 +116,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
             #print(ipac_data['resources']['wetlandsQueried'])
             #print(ipac_data['resources']['wetlands'])
             print("Successfully retrieved data from IPaC API.")
-            
+ #wetlands_________________________________________________________________________________________________________________________________________________________________________           
             #gets wetland data from the response, which is nested under 'resources' and 'wetlands' Need acres/name/boundaries
             wetland_data = ipac_data['resources']['wetlands'] 
             #checking if IPAC is returning None, meaning it is unable to access NWI data
@@ -130,7 +130,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 print("Wetland Acres:", wetland_data['items']['acres'])
                 print("Wetland Name:", wetland_data['items']['name'])
                 print("Wetland boundaries:", wetland_data['items']['bounds'])
-
+#T&E_Species---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
             #gets species data from the response, which is nested under 'resources' and 'populationsBySid' Need wetlands/crithab/sci name
             species_data = ipac_data['resources']['populationsBySid']  
             # Loop through the species data and print the optional common name, scientific name, listing status, and whether critical habitat is in the project footprint. This information is nested under 'population' for each species.
@@ -139,7 +139,7 @@ with tempfile.TemporaryDirectory() as tmpdir:
                 print(f"Scientific Name: {species_info['population']['optionalScientificName']}")
                 print(f"Status: {species_info['population']['listingStatusName']}")
                 print(f"Critical Habitat: {species_info['crithabInFootprint']}")
-
+#Migratory Birds----------------------------------------------------------------------------------------------------------------------------------------------------------------------
             # extract migratory bird data.
             migbird_data = ipac_data['resources']['migbirds']
             if not migbird_data:
@@ -168,7 +168,8 @@ with tempfile.TemporaryDirectory() as tmpdir:
             print(f"Failed to retrieve species list. Status code: {response.status_code}")
     except Exception as e:
         print(f"An error occurred while connecting to the IPaC API: {e}")
-
+        
+#calculate acres from kml___________________________________________________________________________________________________________________________________________________________
     #converts coordinates from wgs84(4326) to UTM zone 14n (32614), longitude is first lattitude is second
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:32614", always_xy=True)
     

@@ -3,9 +3,12 @@
 # more than one kml file, and invalid geometry. Returns a StepResult object with the extracted data 
 # and any issues encountered during the process.
 
+from datetime import datetime
 import os
 import zipfile
-from models import StepResult, BAField, FieldSource
+
+import requests
+from models import StepResult, BAField, FieldSource, add_issue
 from pyproj import Transformer
 import shapely
 from shapely.geometry import Polygon
@@ -13,6 +16,7 @@ from xml.etree import ElementTree as ET
 
 
 def ingest_kmz(file_path):
+
     result = StepResult()
     
     #Check if the file is a present and is not empty, if not, add an issue to the result and return it.
@@ -82,3 +86,85 @@ def ingest_kmz(file_path):
     result.fields['acres'] = BAField(value=acres, source=FieldSource.AUTO, tag='acres')
     
     return result
+
+def query_ipac(geojson_polygon):
+    #returns BAField objects for TE species, wetlands, and migratory birds. Each StepResult contains the relevant fields and any issues encountered during the query process.    
+    result = StepResult()
+    try:
+        ipac_url ="https://ipac.ecosphere.fws.gov/location/api/resources"
+        response = requests.post(ipac_url, json={"location.footprint": geojson_polygon, "timeout": 30, "includeOtherFwsResources": True})
+        if response.status_code == 200:
+            ipac_data = response.json()
+            ##########################TESpecies#############################
+            species_data = ipac_data['resources']['populationBySide'] 
+            #looping through the species data and adding it to the result fields as BAField objects
+            species_list = []
+            for optionalCommonName, species_info in species_data.items():
+                species_list.append({
+                    "common_name": optionalCommonName,
+                    "scientific_name": species_info['population']['optionalScientificName'],
+                    "status": species_info['population']['listingStatusName'],
+                    "critical_habitat": species_info['crithabInFootprint']
+                })
+            result.fields['te_species'] = BAField(value=species_list, source=FieldSource.AUTO, tag='te_species')
+
+           #####################WetlandData################################################################################
+           
+            wetland_data = ipac_data['resources']['wetlands']
+            wetland_info = []
+            if wetland_data is None:
+                    result.add_issue(f"IPAC unable to return wetland data.")
+                    #NWI Backup API call if IPaC fails to return wetland data.
+                    return result
+
+            else:
+                    for items in wetland_data['items']:
+                        wetland_info.append({
+                            "wetland_area": items['acres'],
+                            "wetland_name": items['name']   ,
+                            "wetland_boundaries": items['bounds']
+                        })
+            result.fields['wetlands'] = BAField(value=wetland_info, source=FieldSource.AUTO, tag='wetlands')
+            
+            #############################migratory birds#############################
+
+            migbird_data = ipac_data['resources']['migbirds']
+            migbird_info = []
+            for species in migbird_data:
+                
+                level_name = {"BCC_RANGEWIDE_CON": "Bird of Conservation Concern (BCC) Range-wide Concern", 
+                                  "BCC_BCR_CON": "Bird of Conservation Concern (BCC) BCR Concern",
+                                  "NON_BCC_VULNERABLE": "Non-BCC Vulnerable",
+                                  "BCC_RANGEWIDE_PRV": "Bird of Conservation Concern (BCC) Range-wide Priority (Provisional)"}
+                if species['level']['name'] not in level_name:                        
+                    print(f"Level of Concern: not given in IPaC response")
+                else:
+                        print(f"Level of Concern: {level_name[species['level']['name']]}")
+                if species['optionalBreedsFrom'] is None:
+                        print("Does not breed in project area.")
+                else:
+                    startdate = datetime.strptime(species['optionalBreedsFrom'], "%Y-%m-%dT%H:%MZ").strftime("%B")
+                    enddate = datetime.strptime(species['optionalBreedsTo'], "%Y-%m-%dT%H:%MZ").strftime("%B")
+                    print(f"Breeds From: {startdate}")
+                    print(f"Breeds To: {enddate}")
+                    
+                migbird_info.append({
+                    "common_name": items['phenologySpecies']['commonName'],
+                    "level_of_concern": level_name.get(species['level']['name'], "Not given"),
+                    "breeds_from": startdate if species['optionalBreedsFrom'] is not None else "Not given",
+                    "breeds_to": enddate if species['optionalBreedsTo'] is not None else "Not given"
+                })
+                
+                
+
+            result.fields['migratory_birds'] = BAField(value=migbird_info, source=FieldSource.AUTO, tag='migratory_birds')
+
+        else:
+            result.add_issue(f"IPaC query failed with status code {response.status_code}.")
+            return result
+    
+    except Exception as e:
+       result.add_issue(f"Error querying IPaC: {str(e)}")
+       return result
+            
+            
