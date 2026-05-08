@@ -195,7 +195,7 @@ with pdfplumber.open(pdf_paths[0]) as pdf_pages:
     for page in pdf_pages.pages:
         text += page.extract_text()
 
-#extracting the sections of interest from the text using the extract_section function defined above. The function looks for the start and stop anchors to identify the section, and can also skip to a specific character (like ":") if needed. The extracted sections are printed to the console for review.
+#Extracting the sections of interest from the text using the extract_section function defined above. The function looks for the start and stop anchors to identify the section, and can also skip to a specific character (like ":") if needed. The extracted sections are printed to the console for review.
 project_description = extract_section(text, "Project Description", "Facility Description", "\n")
 proposed_improvement = extract_section(text, "Proposed Improvement", "Project Description", ":")
 purpose_and_need = extract_section(text, "Purpose & Need", "Proposed Improvement", ":")
