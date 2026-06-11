@@ -96,7 +96,7 @@ def query_ipac(geojson_polygon):
         if response.status_code == 200:
             ipac_data = response.json()
             ##########################TESpecies#############################
-            species_data = ipac_data['resources']['populationBySide'] 
+            species_data = ipac_data['resources']['populationsBySid'] 
             #looping through the species data and adding it to the result fields as BAField objects
             species_list = []
             for optionalCommonName, species_info in species_data.items():
@@ -140,6 +140,10 @@ def query_ipac(geojson_polygon):
                     print(f"Level of Concern: not given in IPaC response")
                 else:
                         print(f"Level of Concern: {level_name[species['level']['name']]}")
+                
+                startdate = "Not given"
+                enddate = "Not given"
+                
                 if species['optionalBreedsFrom'] is None:
                         print("Does not breed in project area.")
                 else:
@@ -149,10 +153,10 @@ def query_ipac(geojson_polygon):
                     print(f"Breeds To: {enddate}")
                     
                 migbird_info.append({
-                    "common_name": items['phenologySpecies']['commonName'],
+                    "common_name": species['phenologySpecies']['commonName'],
                     "level_of_concern": level_name.get(species['level']['name'], "Not given"),
-                    "breeds_from": startdate if species['optionalBreedsFrom'] is not None else "Not given",
-                    "breeds_to": enddate if species['optionalBreedsTo'] is not None else "Not given"
+                    "breeds_from": startdate,
+                    "breeds_to": enddate 
                 })
                 
                 
