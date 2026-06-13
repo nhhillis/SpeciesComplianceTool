@@ -1,24 +1,54 @@
-
- 
 import pipeline_functions
 from models import StepResult, BAField, FieldSource, ProjectMetadata
 
 
 class BiologicalAssessment:
-    def __init__(self, metadata):
-        #takes a ProjectMetadata object, stores it, initialises an empty results dict.  
+    def __init__(self, metadata: ProjectMetadata):
         self.metadata = metadata
-        self.results = {}  # This will hold the results of each step in the pipeline
+        self.results = {}
 
-    def run_pipeline(self, kmz_path):
-        #takes kmz_path, runs the pipeline functions in order, stores results in self.results dict.
-        self.results['kmz_ingest'] = pipeline_functions.ingest_kmz(kmz_path)
-        
-        #if error in ingest_kmz, return results with error and stop pipeline
-        if self.results["kmz_ingest"].status == "error":
-            # stop pipeline, surface issues to user
-            return 
-          
-    def query_ipac(geojson_polygon):
-        #takes geojson_polygon, queries IPaC, returns results as a StepResult object.
-        return pipeline_functions.query_ipac(geojson_polygon)
+    def run_pipeline(self, kmz_path: str):
+        # Step 1: KMZ ingest
+        kmz_result = pipeline_functions.ingest_kmz(kmz_path)
+        self.results['kmz_ingest'] = kmz_result
+        if kmz_result.status == "error":
+            return
+
+        geojson_polygon = kmz_result.fields['geojson_polygon'].value
+
+        # Step 2: IPaC query
+        ipac_result = pipeline_functions.query_ipac(geojson_polygon)
+        self.results['ipac'] = ipac_result
+
+        # Step 3: NWI fallback if IPaC couldn't return wetland data
+        if 'wetlands' not in ipac_result.fields:
+            nwi_result = pipeline_functions.query_nwi(geojson_polygon)
+            self.results['nwi'] = nwi_result
+            # Promote NWI wetlands into the ipac result so downstream steps
+            # always look in the same place
+            if 'wetlands' in nwi_result.fields:
+                ipac_result.fields['wetlands'] = nwi_result.fields['wetlands']
+
+    def generate_outputs(self, output_dir: str):
+        import os
+        output_path = os.path.join(
+            output_dir,
+            f"JP{self.metadata.jp_number}_{self.metadata.county}_ProjectDataSummary.docx"
+        )
+        result = pipeline_functions.generate_project_data_summary(self, output_path)
+        self.results['project_data_summary'] = result
+        return result
+
+    def get_issues(self) -> list[str]:
+        """Collect all issues across every pipeline step."""
+        issues = []
+        for step_name, step_result in self.results.items():
+            for issue in step_result.issues:
+                issues.append(f"[{step_name}] {issue}")
+        return issues
+
+    def is_complete(self) -> bool:
+        required = {'kmz_ingest', 'ipac'}
+        return required.issubset(self.results) and all(
+            self.results[k].status != "error" for k in required
+        )
