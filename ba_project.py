@@ -29,6 +29,22 @@ class BiologicalAssessment:
             if 'wetlands' in nwi_result.fields:
                 ipac_result.fields['wetlands'] = nwi_result.fields['wetlands']
 
+        # Step 4: SSURGO soils
+        ssurgo_result = pipeline_functions.query_ssurgo(geojson_polygon)
+        self.results['ssurgo'] = ssurgo_result
+
+        # Step 5: MLRA / Carter & Gregory soils
+        mlra_result = pipeline_functions.query_mlra(geojson_polygon)
+        self.results['mlra'] = mlra_result
+
+        # Step 6: NHD streams
+        nhd_result = pipeline_functions.query_nhd(geojson_polygon)
+        self.results['nhd'] = nhd_result
+
+        # Step 7: Ecoregion (Woods et al. 2005)
+        ecoregion_result = pipeline_functions.query_ecoregion(geojson_polygon)
+        self.results['ecoregion'] = ecoregion_result
+
     def generate_outputs(self, output_dir: str):
         import os
         output_path = os.path.join(

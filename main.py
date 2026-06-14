@@ -63,7 +63,15 @@ def main():
         for b in migbirds.value:
             print(f"  {b['common_name']} — {b['level_of_concern']}")
 
-    # Generate Project Data Summary
+    ssurgo = ba.results.get('ssurgo')
+    soils = ssurgo.fields.get('soils') if ssurgo else None
+    print(f"Soil map units:  {len(soils.value) if soils else 'N/A'}")
+    if soils and soils.value:
+        print("\nSoils:")
+        for s in soils.value:
+            print(f"  {s['map_unit_name']} — Hydric: {s['hydric_rating']}, Drainage: {s['drainage_class']}")
+
+    # Generate output
     output_dir = os.path.dirname(os.path.abspath(kmz_path))
     print(f"\nGenerating Project Data Summary...")
     out_result = ba.generate_outputs(output_dir)
